@@ -2,6 +2,8 @@ function message(e) {
   console.log('Server: ' + e.data);
 };
 
+var window_focus = true;
+
 $(document).ready(() => {
     
     Materialize.updateTextFields();
@@ -10,19 +12,30 @@ $(document).ready(() => {
     // $('body').append(`<span>Messaging under the alias: ${name}</span><br>`);
     $('#username').val(name);
     
-    var server = connectToServer('ws://icsmessage.rpappa.com:9009', function() {
-        // server.setRoom(navigator.userAgent.split(" ")[navigator.userAgent.split(" ").length - 1]);
-        server.setRoom("Safari/537.36");
+    if(window.location.host.indexOf('c9users.io') != -1) {
+        var url = 'wss://chat-backend-rpappa.c9users.io/'; // testing backend
+    } else {
+        var url = 'ws://icsmessage.rpappa.com:9009'; // "production" backend
+    }
+    
+    var server = connectToServer(url, function() {
+        server.setRoom("icsChat");
         server.onRawMessage(message);
         server.sendRawMessage('ping');
         server.onChatMessage(function(text, user) {
-            var scrolldown = $('body').scrollTop() ==$(document).height()-$(window).height();
+            var scrolldown = Math.abs($('body').scrollTop() - ($(document).height()-$(window).height())) < 300;
             
           $('#messages').append(
 `<div class="card grey lighten-3"><div class="card-content black-text"><span class="card-title">${user}</span><p id="text">${text}</p></div></div>`);
         
             if(scrolldown) {
                 $('html, body').scrollTop($(document).height());
+            }
+            
+            if(!window_focus) {
+                $('title').text('ics chat *')
+            } else {
+                $('title').text('ics chat')
             }
         });
         // server.sendChatMessage('test', name);
@@ -39,6 +52,14 @@ $(document).ready(() => {
     });
 });
 
+
+// http://stackoverflow.com/questions/3479734/javascript-jquery-test-if-window-has-focus
+$(window).focus(function() {
+    window_focus = true;
+    $('title').text('ics chat')
+}).blur(function() {
+    window_focus = false;
+});
 
 function connectToServer(url, onopen) {
     var instance = {};
