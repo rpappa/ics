@@ -1,0 +1,259 @@
+/* disappear.css
+
+Copyright (c) 2016 Ryan Pappa
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software 
+and associated documentation files (the "Software"), to deal in the Software without restriction, 
+including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, 
+and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, 
+subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial 
+portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT
+LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. 
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER 
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION 
+WITH T
+
+/* basic body css */
+body {
+    /* blue bg color to start */
+    background-color: rgb(50, 100, 150);
+    overflow: hidden;
+}
+
+/*the circle that you click*/
+#circle {
+    position: absolute;
+    /* start hidden */
+    display: none;
+}
+
+/*a large circle*/
+.large {
+    /* we could define different circles later on */
+    width:150px;
+    height:150px;
+    border-radius: 50%;
+}
+
+.circle {
+    /*general class for any circle*/
+}
+
+/* the div holding text in the middle of the circle */
+.circleTextContainer {
+    position:relative;
+    top:50%;
+    left:50%;
+    /* this is used a lot to center things. it basically translates it left and up 50% of its size */
+    -moz-transform: translateX(-50%) translateY(-50%);
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+    font-size:72px;
+    text-align:center;
+}
+
+/* the actual text */
+#circleText {
+    display: none;
+    
+    /* make it so you cant select it */
+    -webkit-user-select: none; /* Chrome/Safari */        
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE10+ */
+}
+
+/* bottom settings slideout */
+#slideout {
+    /* container for slideout at bottom */
+    position: absolute;
+    top:100%; /* at the bottom of the screen (hidden) */
+    height:200px;
+    width:100%;
+    
+    background-color:rgba(20, 20, 20, 0.4);
+    
+    /* there's some css animation instead of doing it in jquery */
+    -webkit-transition-duration: 0.3s;
+    -moz-transition-duration: 0.3s;
+    -o-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+}
+
+/* move up on slide out */
+#slideout:hover {
+  top: calc(100% - 200px);
+}
+
+/* the tab at the top of the slider */
+#tab {
+    background-color:rgba(20, 20, 20, 0.4);
+    width:100px;
+    height:40px;
+    position: relative;
+    /* make it stick out from the bottom of the screen */ 
+    top:-40px;
+    left: 50%;
+    -moz-transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+    border-radius: 7px 7px 0px 0px;
+}  
+
+/* the header that is hidden by default */
+.header {
+    opacity: 0;
+    -webkit-transition-duration: 0.1s;
+    -moz-transition-duration: 0.1s;
+    -o-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+}
+
+/* show header when the mouse is at the top */
+#headerPull:hover .header {
+    opacity: 1;
+}
+
+/* the contents of the bottom slideout */
+#contents {
+    height: 200px;
+    position: relative;
+    top:-40px;
+}
+
+/* the copyright at the bottom of the slideout */
+#copyright {
+    height: 50px;
+    background-color: rgba(20, 20, 20, 0.4);
+    color: white;
+    line-height: 50px;
+    position: absolute;
+    top:150px;
+    width: 100%;
+    padding-left:20px;
+}
+
+/* mode selectors */
+.modes {
+    text-align: center;
+}
+
+.audio {
+    text-align:center;
+}
+/* timer in top left (hidden by default) */
+#timer {
+    display: none;
+    position: absolute;
+    padding:0px 10px 0px 10px;
+}
+
+/* actual time text */
+#time {
+    font-size:60px;
+    -webkit-user-select: none; /* Chrome/Safari */        
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE10+ */
+}
+
+/* score container that shows in middle of screen */
+#scoreContainer {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width:75%;
+    -moz-transform: translateX(-50%) translateY(-50%);
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+    text-align: center;
+    pointer-events: none;
+    
+    /* keep it in the front */
+    z-index:100;
+    
+    display: none;
+}
+
+/* actual score text */
+#score {
+    font-size: 250px;
+    pointer-events: none;
+    text-shadow: 0px 0px 4px rgba(20, 20, 20, 0.4);
+    -webkit-user-select: none; /* Chrome/Safari */        
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE10+ */
+}
+
+/* highscore panel */
+#endgame {
+    background-color:rgba(20, 20, 20, 0.4);
+    width: 15%;
+    padding: 10px;
+    color:white;
+    
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -moz-transform: translateX(-50%) translateY(-50%);
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+    
+    display:none;
+}
+
+/* list of high scores */
+#high {
+    margin-top: 0px;
+    padding-left:20px;
+}
+
+/* (im just flexing on my) x button 
+    It's basically a + sign rotated 45 degrees */
+#close {
+    float:right;
+    -ms-transform: rotate(45deg); /* IE 9 */
+    -webkit-transform: rotate(45deg); /* Chrome, Safari, Opera */
+    transform: rotate(45deg);
+}
+
+/* one of the x lines */
+#line1 {
+    height:1px;
+    background-color:white;
+    width:20px;
+    -ms-transform: rotate(90deg); /* IE 9 */
+    -webkit-transform: rotate(90deg); /* Chrome, Safari, Opera */
+    transform: rotate(90deg);
+    left:-10px;
+    position: absolute;
+}
+
+/* the other x line */
+#line2 {
+    height:1px;
+    background-color:white;
+    width:20px;
+    left: -10px;
+    position: absolute;
+}
+
+/* i dont think this hover works */
+.line {
+    opacity: 1;
+}
+.line:hover {
+    opacity:0.7;
+}
+
+/* div to handle x button click events */
+#x {
+    position: relative;
+    float: right;
+    width:15px; /* 20 ≈ sqrt(15^2 + 15^2) */
+    height:15px;
+    right:-7px;
+    top:-7px;
+}
