@@ -10,7 +10,7 @@ $(document).ready(() => {
     // $('body').append(`<span>Messaging under the alias: ${name}</span><br>`);
     $('#username').val(name);
     
-    var server = connectToServer('wss://chat-backend-rpappa.c9users.io/', function() {
+    var server = connectToServer('ws://98.10.215.5:9009', function() {
         // server.setRoom(navigator.userAgent.split(" ")[navigator.userAgent.split(" ").length - 1]);
         server.setRoom("Safari/537.36");
         server.onRawMessage(message);
