@@ -11,8 +11,13 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
         <script src="https://code.jquery.com/color/jquery.color-2.1.2.min.js"></script>
+        <!-- https://github.com/patorjk/Extendible-BBCode-Parser -->
+        <script src="xbbcode.js"></script>
+        <link rel="stylesheet" type="text/css" href="xbbcode.css">
         <!--our javascript-->
         <script src="chat.js"></script>
+        <!--favicon-->
+        <link rel="icon" type="image/x-icon" href="bubble.ico" />
         
         <title>ics chat</title>
     </head>
@@ -43,16 +48,29 @@
     <footer> 
       <div id="bottom" class="row">  
           <form id="messageForm">
-              <div class="input-field col s10">
+              <div class="input-field col s12">
                   <i class="material-icons prefix">chat_bubble_outline</i>
                   <input type="text" autocomplete="off" name="message" id="message">
                   <label class="active" for="message">Message</label>
               </div> 
-              <div id="submitcontainer">
-                   <input type="submit" value="Submit" id="submit" class="waves-effect waves-light btn">
-              </div>
-         
+              <!--<div id="submitcontainer">-->
+              <!--     <input type="submit" value="Submit" id="submit" class="waves-effect waves-light btn">-->
+              <!--</div>-->
+              <div class="fixed-action-btn">
+            <a class="btn-floating btn-large red">
+              <i class="large material-icons">menu</i>
+            </a>
+            <ul>
+              <li><a id ="size" class="btn-floating orange darken-1"><i class="material-icons">format_size</i></a></li>
+              <li><a id ="italic" class="btn-floating cyan"><i class="material-icons">format_italic</i></a></li>
+              <li><a id ="bold" class="btn-floating purple"><i class="material-icons">format_bold</i></a></li>
+              <li><a id ="photo" class="btn-floating yellow darken-1"><i class="material-icons">insert_photo</i></a></li>
+              <li><a id ="link" class="btn-floating green"><i class="material-icons">link</i></a></li>
+              <li><a id ="send" class="btn-floating blue"><i class="material-icons">send</i></a></li>
+            </ul>
+          </div>
           </form> 
+          
       </div>
     </footer>  
      

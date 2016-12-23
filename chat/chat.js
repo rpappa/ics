@@ -25,8 +25,12 @@ $(document).ready(() => {
         server.onChatMessage(function(text, user) {
             var scrolldown = Math.abs($('body').scrollTop() - ($(document).height()-$(window).height())) < 300;
             
-          $('#messages').append(
-`<div class="card grey lighten-3"><div class="card-content black-text"><span class="card-title">${user}</span><p id="text">${text}</p></div></div>`);
+            parseFormat(text, (out)=> {
+                 $('#messages').append(
+`<div class="card grey lighten-3"><div class="card-content black-text"><span class="card-title">${user}</span><p id="text">${out}</p></div></div>`);
+            })
+//           $('#messages').append(
+// `<div class="card grey lighten-3"><div class="card-content black-text"><span class="card-title">${user}</span><p id="text">${text}</p></div></div>`);
         
             if(scrolldown) {
                 $('html, body').scrollTop($(document).height());
@@ -43,15 +47,48 @@ $(document).ready(() => {
             console.log(rooms);
             console.log(pops);
         });
-        
+        $('#send').click(() => {
+            $( "#messageForm" ).submit();
+        })
         $( "#messageForm" ).submit(function( event ) {
             event.preventDefault();
             server.sendChatMessage($('#message').val(), $('#username').val());
             $('#message').val('');
         });
     });
+    $('#link').click(() => {
+        $('#message').focus()
+        $('#message').val( $('#message').val() + "[url]inserturlhere[/url]");
+    })
+    $('#photo').click(() => {
+        $('#message').focus()
+        $('#message').val( $('#message').val() + "[img]insertimgurlhere[/img]");
+    })
+    $('#bold').click(() => {
+        $('#message').focus()
+        $('#message').val( $('#message').val() + "[b]boldtext[/b]");
+    })
+    $('#italic').click(() => {
+        $('#message').focus()
+        $('#message').val( $('#message').val() + "[i]italictext[/i]");
+    })
+    $('#size').click(() => {
+        $('#message').focus()
+        $('#message').val( $('#message').val() + "[big]bigtext[/big]");
+    })
+    parseFormat("lalalala test [b]test[/b] test 2")
 });
 
+function parseFormat(text, cb) {
+    var result = XBBCODE.process({
+      text: text,
+      removeMisalignedTags: false,
+      addInLineBreaks: false
+    });
+    // console.error("Errors", result.error);
+    // console.log(result.html)
+    cb(result.html);
+}
 
 // http://stackoverflow.com/questions/3479734/javascript-jquery-test-if-window-has-focus
 $(window).focus(function() {
@@ -60,6 +97,7 @@ $(window).focus(function() {
 }).blur(function() {
     window_focus = false;
 });
+
 
 function connectToServer(url, onopen) {
     var instance = {};
