@@ -75,6 +75,9 @@ $(document).ready(() => {
     $('#size').click(() => {
         $('#message').focus()
         $('#message').val( $('#message').val() + "[big]bigtext[/big]");
+    });
+    $('#clear').click(()=> {
+        $('.card').remove();
     })
     parseFormat("lalalala test [b]test[/b] test 2")
 });
