@@ -1,3 +1,14 @@
+body {
+    margin:0;
+    margin-bottom:20px;
+}
+
+/*
+Sections:
+Top is username place
+Middle is chat messages
+Bottom is the sending area
+*/
 #top {
     margin-top:10px;
 }
@@ -13,10 +24,7 @@
     margin-bottom: 0px;
 }
 
-body {
-    margin:0;
-    margin-bottom:20px;
-}
+/* Sending area stuff */
 .prefix {
     position:relative;
     top:15px;
@@ -29,11 +37,9 @@ body {
     top: 23px;
     right: 4%;
 }
-
 #text {
-    word-wrap: break-word;
+    word-wrap: break-word; /* prevents words from overflowing inside the container */ 
 }
-
 .fixed-action-btn {
     bottom:20px;
 }

@@ -7,7 +7,7 @@ This is equivalent to
 function(param1, param2, ...) { ... }
 Read more: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions
 
-Copyright (c) 2016 Ryan Pappa
+Copyright (c) 2016-2017 Ryan Pappa
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software 
 and associated documentation files (the "Software"), to deal in the Software without restriction, 

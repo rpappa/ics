@@ -1,3 +1,35 @@
+/* 
+https://github.com/rpappa/ics-messenger
+https://github.com/rpappa/ics
+
+chat.js
+
+Note to those reading this code, especially in the context of Intro to Computer Science:
+There is heavy usage of javascript arrow functions, aka "fat arrows", notated like
+(param1, param2, ...) => { ... }
+This is equivalent to
+function(param1, param2, ...) { ... }
+Read more: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions
+
+Copyright (c) 2016-2017 Ryan Pappa
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software 
+and associated documentation files (the "Software"), to deal in the Software without restriction, 
+including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, 
+and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, 
+subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial 
+portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT
+LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. 
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER 
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION 
+WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+*/
+
+// handles a raw message from the server
 function message(e) {
   console.log('Server: ' + e.data);
 };
@@ -6,11 +38,10 @@ var window_focus = true;
 
 $(document).ready(() => {
     
-    Materialize.updateTextFields();
-    var name = randomName();
+    Materialize.updateTextFields(); // make the input fields sexy
+    var name = randomName(); // make a random name
     
-    // $('body').append(`<span>Messaging under the alias: ${name}</span><br>`);
-    $('#username').val(name);
+    $('#username').val(name); // fill in our random name
     
     if(window.location.host.indexOf('c9users.io') != -1) {
         var url = 'wss://chat-backend-rpappa.c9users.io/'; // testing backend
@@ -18,44 +49,60 @@ $(document).ready(() => {
         var url = 'ws://icsmessage.rpappa.com:9009'; // "production" backend
     }
     
+    // connect to the server
     var server = connectToServer(url, function() {
-        server.setRoom("icsChat");
-        server.onRawMessage(message);
-        server.sendRawMessage('ping');
-        server.onChatMessage(function(text, user) {
+        server.setRoom("icsChat"); // an arbitrary room
+        server.onRawMessage(message); // handle raw messages
+        server.sendRawMessage('ping'); // test connection (see the developer console)
+        
+        // handle a chat message
+        server.onChatMessage((text, user) => {
+            
+            // check if scroll is close to the bottom
             var scrolldown = Math.abs($('body').scrollTop() - ($(document).height()-$(window).height())) < 300;
             
+            // format bbcode in the received message
             parseFormat(text, (out)=> {
+                 // add the received message in a materialize card
                  $('#messages').append(
 `<div class="card grey lighten-3"><div class="card-content black-text"><span class="card-title">${user}</span><p id="text">${out}</p></div></div>`);
             })
 //           $('#messages').append(
 // `<div class="card grey lighten-3"><div class="card-content black-text"><span class="card-title">${user}</span><p id="text">${text}</p></div></div>`);
         
+            // if scroll is close to the bottom, scroll down
             if(scrolldown) {
                 $('html, body').scrollTop($(document).height());
             }
             
+            // give a little notification in the tab title if the window isn't in focus
             if(!window_focus) {
                 $('title').text('ics chat *')
             } else {
                 $('title').text('ics chat')
             }
         });
-        // server.sendChatMessage('test', name);
+        
+        // list rooms to console (not really used)
         server.listRooms((rooms, pops) => {
             console.log(rooms);
             console.log(pops);
         });
+        
+        // submit the message form when the send button is pressed
         $('#send').click(() => {
             $( "#messageForm" ).submit();
         })
-        $( "#messageForm" ).submit(function( event ) {
-            event.preventDefault();
-            server.sendChatMessage($('#message').val(), $('#username').val());
-            $('#message').val('');
+        
+        // handle a submit of the message form
+        $( "#messageForm" ).submit(( event ) => {
+            event.preventDefault(); // don't refresh the page
+            server.sendChatMessage($('#message').val(), $('#username').val()); // send the message
+            $('#message').val(''); // clear the message field
         });
     });
+    
+    // handle formatting buttons
     $('#link').click(() => {
         $('#message').focus()
         $('#message').val( $('#message').val() + "[url]inserturlhere[/url]");
@@ -77,11 +124,12 @@ $(document).ready(() => {
         $('#message').val( $('#message').val() + "[big]bigtext[/big]");
     });
     $('#clear').click(()=> {
-        $('.card').remove();
+        $('.card').remove(); // remove all materialize cards
     })
-    parseFormat("lalalala test [b]test[/b] test 2")
 });
 
+
+// parse bbcode
 function parseFormat(text, cb) {
     var result = XBBCODE.process({
       text: text,
@@ -96,12 +144,12 @@ function parseFormat(text, cb) {
 // http://stackoverflow.com/questions/3479734/javascript-jquery-test-if-window-has-focus
 $(window).focus(function() {
     window_focus = true;
-    $('title').text('ics chat')
+    $('title').text('ics chat') // clear tab title notification
 }).blur(function() {
     window_focus = false;
 });
 
-
+// https://github.com/rpappa/ics-messenger
 function connectToServer(url, onopen) {
     var instance = {};
     
