@@ -43,3 +43,10 @@ Bottom is the sending area
 .fixed-action-btn {
     bottom:20px;
 }
+
+/* Status indicator */
+#status {
+    color:red;
+    font-weight: bold;
+    opacity: 0.2;
+}

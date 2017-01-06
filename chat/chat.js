@@ -29,9 +29,13 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OU
 WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
+var connected = false;
+
 // handles a raw message from the server
 function message(e) {
   console.log('Server: ' + e.data);
+  connected = true;
+  $('#status').hide();
 };
 
 var window_focus = true;
@@ -53,7 +57,35 @@ $(document).ready(() => {
     var server = connectToServer(url, function() {
         server.setRoom("icsChat"); // an arbitrary room
         server.onRawMessage(message); // handle raw messages
+        
         server.sendRawMessage('ping'); // test connection (see the developer console)
+        
+        setInterval(() => {
+            server.sendRawMessage('ping');
+            
+            connected = false; // set connection to false
+            
+            setTimeout(() => {
+                // if we still aren't connected after 2 seconds start flashing the no connection thingy
+                if(!connected) {
+                    function fadeIn() {
+                        if(!connected ) {
+                            $('#status').fadeIn(300, fadeOut); // pass fadeout to run when completed
+                        } else {
+                            $('#status').hide();
+                        }
+                    }
+                    function fadeOut() {
+                        if(!connected) {
+                            $('#status').fadeOut(300, fadeIn); // pass fadein to run when completed
+                        } else {
+                            $('#status').hide();
+                        }
+                    }
+                    fadeIn();
+                }
+            }, 2000);
+        }, 5000); // repeat every 5 seconds
         
         // handle a chat message
         server.onChatMessage((text, user) => {
