@@ -1,7 +1,12 @@
+var shake = 10;
 $('document').ready(function() {
    
    setInterval(function(){
     var rand = Math.random();
+    $('#container').css('left', (Math.random()*shake+(50-shake/2))+'%');
+    $('#container').css('top', (Math.random()*shake+(50-shake/2))+'%');
+    $('img').css('left', (Math.random()*75)+'%');
+    $('img').css('top', (Math.random()*75)+'%');
     if(rand < 0.2) {
         $('body').css('background-color', 'red');
     } else if (rand < 0.4) {
@@ -17,15 +22,15 @@ $('document').ready(function() {
    setInterval(function(){
     var rand = Math.random();
     if(rand < 0.2) {
-        $('#text').css('color', 'red');
+        $('body').css('color', 'red');
     } else if (rand < 0.4) {
-        $('#text').css('color', 'lime');
+        $('body').css('color', 'lime');
     } else if (rand < 0.6) {
-        $('#text').css('color', 'blue');
+        $('body').css('color', 'blue');
     } else if (rand < 0.8) {
-        $('#text').css('color', 'purple');
+        $('body').css('color', 'purple');
     } else if (rand < 1) {
-        $('#text').css('color', 'orange');
+        $('body').css('color', 'orange');
     }
    }, 1);
 });
