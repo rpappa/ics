@@ -54,7 +54,7 @@ ul {
 }
 #drop:focus {
     outline: none;
-    height:140px;
+    height:180px;
 }
 #disclaimer {
     bottom:0;
