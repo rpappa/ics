@@ -1,3 +1,3 @@
 if(window.location.host.indexOf('c9users.io') != -1) {
-    window.location = 'http://ics.rpappa.com/';
+    // window.location = 'http://ics.rpappa.com/';
 }
