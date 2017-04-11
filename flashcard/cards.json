@@ -1,0 +1,18 @@
+cards: [
+    {
+        title: 'parallel lines',
+        description: 'lines that never intersect',
+        image: 'img/parallel.jpg',
+        tags: [
+            'lines', 'geometry', 'unit 1'
+            ]
+    }, 
+    {
+        title: 'parallel lines',
+        description: 'lines that never intersect',
+        image: 'img/parallel.jpg',
+        tags: [
+            'lines', 'geometry', 'unit 1'
+            ]
+    }
+]

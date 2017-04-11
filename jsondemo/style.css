@@ -1,0 +1,27 @@
+.card {
+    width:400px;
+    height:300px;
+    border:2px solid black;
+    display:inline-block;
+    margin:10px;
+    padding:10px;
+    overflow: hidden;
+}
+.cards {
+    width: 100%;
+}
+.image {
+    float:right;
+    width:100px;
+    height:100px;
+}
+img {
+    width:100px;
+    height:100px;
+}
+span {
+    width:200px;
+}
+.tag {
+    color:blue;
+}

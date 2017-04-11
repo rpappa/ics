@@ -1,0 +1,46 @@
+.card-image {
+    height: 80px;
+    overflow: hidden;
+    border-bottom:1px solid #9f9f9f;
+}
+
+img {
+    margin-top: -200px;
+    max-height: 360px;
+    max-width:100%;
+}
+
+div div .card-title {
+    color:#000 !important;
+}
+
+.card-content {
+    height:0px;
+    padding-bottom: 0px !important;
+    overflow:hidden;
+}
+div .expand {
+    height:100%;
+    padding-bottom: 24px !important;
+}
+
+input[type=text] {
+    width: 510px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: white;
+    background-image: url('searchicon.png');
+    background-position: 10px 10px; 
+    background-repeat: no-repeat;
+    padding: 12px 20px 12px 40px;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+    margin-left: 10px;
+
+}
+
+input[type=text]:focus {
+    width: 100%;
+}

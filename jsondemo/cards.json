@@ -1,0 +1,40 @@
+{
+"cards": [
+    {
+        "title": "Laptop",
+        "desc": "A portable computer, with a keyboard and a screen",
+        "img": "laptop.jpg",
+        "tags": ["tech", "portable", "pc"]
+    }, 
+    {
+        "title": "Smartphone",
+        "desc": "A pocketable computer, operated primarily through a touchscreen",
+        "img": "phone.jpg",
+        "tags": ["tech", "portable", "phones"]
+    },
+    {
+        "title": "iPhone",
+        "desc": "A smartphone that runs iOS",
+        "img": "iphone.jpg",
+        "tags": ["tech", "portable", "phones", "ios"]
+    },
+    {
+        "title": "Samsung S8",
+        "desc": "Samsung's latest and greatest smartphone",
+        "img": "s8.jpg",
+        "tags": ["tech", "portable", "phones", "android"]
+    },
+    {
+        "title": "Google Pixel",
+        "desc": "Google's high-end iPhone competitor",
+        "img": "pixel.jpg",
+        "tags": ["tech", "portable", "phones", "android"]
+    },
+    {
+        "title": "Grass",
+        "desc": "Grows outside and feeds animals",
+        "img": "grass.jpg",
+        "tags": ["nature"]
+    }
+]
+}
