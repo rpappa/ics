@@ -25,3 +25,9 @@ span {
 .tag {
     color:blue;
 }
+
+@media (max-width: 600px) {
+  span {
+    font-size: 22px;
+  }
+}
