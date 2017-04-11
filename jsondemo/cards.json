@@ -31,6 +31,12 @@
         "tags": ["tech", "portable", "phones", "android"]
     },
     {
+        "title": "3D printer",
+        "desc": "Fabricate objects based off CAD designs, often using FDM or SLA techniques",
+        "img": "printer.jpg",
+        "tags": ["tech"]
+    },
+    {
         "title": "Grass",
         "desc": "Grows outside and feeds animals",
         "img": "grass.jpg",
