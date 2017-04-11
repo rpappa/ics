@@ -40,4 +40,6 @@ a:visited {
 body {
     color: #212121;
     font-family: roboto;
+    padding-left:10px;
+    padding-right:10px;
 }
