@@ -1,6 +1,6 @@
 .card {
     width:400px;
-    height:300px;
+    height:200px;
     border:2px solid black;
     display:inline-block;
     margin:10px;
@@ -25,9 +25,19 @@ span {
 .tag {
     color:blue;
 }
-
+a {
+    color:red;
+    text-decoration: none;
+}
+a:visited {
+    color:red;
+}
 @media (max-width: 600px) {
   span {
     font-size: 22px;
   }
+}
+body {
+    color: #212121;
+    font-family: roboto;
 }

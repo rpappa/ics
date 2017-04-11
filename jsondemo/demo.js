@@ -16,7 +16,7 @@ $(document).ready(()=> {
                     if(tags.indexOf(cards[i].tags[t]) == -1) {
                         tags.push(cards[i].tags[t]);
                         console.log(tags);
-                        $('#tags').append(`<span class="tag cat">${cards[i].tags[t]} </span>`)
+                        $('#tags').append(`<span class="tag cat">${cards[i].tags[t]}</span><span class="tag"> - </span>`)
                     }
                 }
                 $('.tag.cat').click(function(){
