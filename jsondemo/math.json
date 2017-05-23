@@ -1,0 +1,20 @@
+{
+"cards": [
+    {
+        "title": "Lines",
+        "subtitle": "Parallel, perpendicular, neither",
+        "desc": "Parallel lines never intersect, perpendicular lines intersect at 90&#176; , all other lines intersect at some other angle",
+        "img": "img/parallel.gif",
+        "tags": ["algebra-1", "geometry", "algebra-2", "alg1-u1", "alg1-u2", "alg1-u3", "alg1-u4", "lines", "linear", "intersection", "right-angles"],
+        "created": "Maroon, Paige, Pappa, Tony"
+    },
+    {
+        "title": "Circles",
+        "subtitle": "Are they one-sided or infinite-sided?",
+        "desc": "The set of all points equidistant to a fixed point, called the center",
+        "img": "img/circle_ctr_radius.jpg",
+        "tags": ["geometry", "geo-u8", "shapes"],
+        "created": "Maroon, Paige, Pappa, Tony"
+    }
+]
+}

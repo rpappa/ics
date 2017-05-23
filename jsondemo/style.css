@@ -1,3 +1,7 @@
+/*
+    CSS will apply to dynamically generated cards
+*/
+
 .card {
     width:400px;
     height:200px;
@@ -6,6 +10,8 @@
     margin:10px;
     padding:10px;
     overflow: hidden;
+    position: relative;
+    box-shadow: 5px 5px 3px #888888;
 }
 .cards {
     width: 100%;
@@ -25,6 +31,13 @@ span {
 .tag {
     color:blue;
 }
+
+.createdby {
+    position:absolute;
+    left:5px;
+    bottom:5px;
+}
+
 a {
     color:red;
     text-decoration: none;
