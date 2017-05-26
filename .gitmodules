@@ -1,0 +1,3 @@
+[submodule "APUSH"]
+	path = APUSH
+	url = https://github.com/rpappa/ics.git
